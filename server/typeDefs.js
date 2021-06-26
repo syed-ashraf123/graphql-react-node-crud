@@ -1,14 +1,15 @@
 const { gql } = require("apollo-server-express");
+//Queries
 const typeDefs = gql`
   type Post {
     id: ID
     title: String
     description: String
   }
+
   type Query {
     hello: String
-    getAllPosts: [Post]
-    getPost(id: ID): Post
+    getAll: [Post]
   }
   input PostInput {
     title: String
@@ -16,8 +17,9 @@ const typeDefs = gql`
   }
   type Mutation {
     createPost(post: PostInput): Post
-    deletePost(id: ID): String
-    updatePost(id: ID, post: PostInput): Post
+    updatePost(id: String, post: PostInput): Post
+    deletePost(id: String): String
   }
 `;
+
 module.exports = typeDefs;
